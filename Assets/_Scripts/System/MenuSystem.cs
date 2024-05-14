@@ -13,6 +13,7 @@ public class MenuSystem : MonoBehaviour
     private const string AnimationTrigger = "Play";
 
     public int[] itemIndex = new int[2] { 0, 0 }; //$ { row, col }
+    [SerializeField]
     private int maxIndex, colCount;
     private InputAction[] actions = new InputAction[5];
     private Animator frameAnimation;
@@ -22,6 +23,7 @@ public class MenuSystem : MonoBehaviour
     [SerializeField] private bool isOverflowToNextSection = true;
     [SerializeField] Button[] _ActionItems;
     [SerializeField] Transform frame;
+    [SerializeField] Vector2 frameRetouchVec2;
 
     private void Start()
     {
@@ -29,13 +31,13 @@ public class MenuSystem : MonoBehaviour
         maxIndex = _ActionItems.Length - 1;
         colCount = Mathf.CeilToInt((maxIndex + 1.0f) / rowCount);
 
-        //# private Button[][] ActionItems;
         List<Button> list = new List<Button>();
         List<Button[]> returnList = new List<Button[]>();
+
         for (int i = 0; i < maxIndex + 1; i++)
         {
             list.Add(_ActionItems[i]);
-            if (list.Count == rowCount)
+            if (list.Count == rowCount || i == maxIndex)
             {
                 returnList.Add(item: list.ToArray());
                 list = new List<Button>();
@@ -44,7 +46,11 @@ public class MenuSystem : MonoBehaviour
                 itemIndex = new int[2] { i / rowCount, i % rowCount };
         }
         ActionItems = returnList.ToArray();
+        print(ActionItems.Length);
+        print(ActionItems[0].Length);
+        print(ActionItems[3].Length);
 
+        #region #Actions Initialize
         actions = new InputAction[5]{
             new InputAction(),
             new InputAction(),
@@ -72,6 +78,7 @@ public class MenuSystem : MonoBehaviour
         actions[4].performed += item => OptionMovement_LR(true);
         actions[4].AddBinding("<Keyboard>/RightArrow");
         actions[4].Enable();
+        #endregion
     }
     private void OptionSelect()
     {
@@ -86,6 +93,10 @@ public class MenuSystem : MonoBehaviour
             {
                 itemIndex[1] -= ActionItems.Length;
             }
+            else if (itemIndex[0] > ActionItems[itemIndex[1]].Length - 1)
+            {
+                itemIndex[0] = ActionItems[itemIndex[1]].Length - 1;
+            }
         }
         else
         {
@@ -95,14 +106,14 @@ public class MenuSystem : MonoBehaviour
                 itemIndex[1] += ActionItems.Length;
                 if (itemIndex[0] > ActionItems[itemIndex[1]].Length - 1)
                 {
-                    itemIndex[0] = ActionItems[itemIndex[1]].Length;
+                    itemIndex[0] = ActionItems[itemIndex[1]].Length - 1;
                 }
             }
         }
+        UpdateFrame();
     }
     private void OptionMovement_LR(bool isPositive)
     {
-        itemIndex[0] += isPositive ? 1 : -1;
         if (isPositive)
         {
             itemIndex[0]++;
@@ -128,14 +139,23 @@ public class MenuSystem : MonoBehaviour
                 if (isOverflowToNextSection)
                 {
                     itemIndex[1]--;
-                    itemIndex[1] += ActionItems.Length;
+                    if (itemIndex[1] < 0) { itemIndex[1] += ActionItems.Length; }
                     if (itemIndex[0] > ActionItems[itemIndex[1]].Length - 1)
                     {
-                        itemIndex[0] = ActionItems[itemIndex[1]].Length;
+                        itemIndex[0] = ActionItems[itemIndex[1]].Length - 1;
                     }
                 }
             }
         }
+        UpdateFrame();
+    }
+    private void UpdateFrame()
+    {
+        Vector3 vec3;
+        print(itemIndex[0]);
+        print(itemIndex[1]);
+        vec3 = ActionItems[itemIndex[1]][itemIndex[0]].transform.position;
+        frame.transform.position = new Vector3(vec3.x - frameRetouchVec2.x, vec3.y - frameRetouchVec2.y, vec3.z);
     }
     public void testAction(int i)
     {
