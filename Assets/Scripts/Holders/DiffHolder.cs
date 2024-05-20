@@ -14,8 +14,8 @@ public class DiffHolder : MonoBehaviour
     }
     public void ApplyDiff(int diff)
     {
-        sprites[0].sprite = SpriteDict.GetNumSprite(Mathf.FloorToInt(diff / 10f));
-        sprites[1].sprite = SpriteDict.GetNumSprite(diff % 10);
+        sprites[0].sprite = SpriteManger.GetNumSprite(Mathf.FloorToInt(diff / 10f));
+        sprites[1].sprite = SpriteManger.GetNumSprite(diff % 10);
         sprites[0].color = new Color32(255, 255, 255, (byte)(diff < 10 ? 100 : 255));
     }
 }

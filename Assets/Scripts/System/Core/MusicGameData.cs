@@ -6,8 +6,7 @@ using Enums;
 public class MusicGameData : MonoBehaviour
 {
     public LineMode lineMode = LineMode.Line4;
-    public GuageMode[] ClearMode = new GuageMode[5];
-    public ResultAP[] ClearAP = new ResultAP[5];
+    public ClearGuage[] ClearMode = new ClearGuage[5];
 
     public int[] diff = new int[5] { -1, -1, -1, -1, -1};
     public int[] HighScore = new int[5];
