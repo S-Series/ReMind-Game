@@ -13,6 +13,9 @@ public class MusicManager : MonoBehaviour
     }
     private void Start()
     {
-        
+        MusicData[] datas;
+        datas = GetComponentsInChildren<MusicData>();
+
+
     }
 }

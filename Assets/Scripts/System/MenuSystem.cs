@@ -33,7 +33,6 @@ public class MenuSystem : MonoBehaviour
         foreach(int ints in rowCounts) { itemCount += ints; }
         if (_ActionItems.Length != itemCount) { throw new SystemException(""); }
 
-
         List<Button> list = new List<Button>();
         List<Button[]> returnList = new List<Button[]>();
         TryGetComponent<Animator>(out var animator);

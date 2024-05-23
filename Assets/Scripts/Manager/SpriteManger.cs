@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,20 @@ using Enums;
 
 public class SpriteManger : MonoBehaviour
 {
+    private static readonly string[] BG_Name =
+    {
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+    };
+
+    [SerializeField] Sprite[] _backgroundSprites;
+    private static Sprite[] BackgroundSprites;
+
     [SerializeField] Sprite[] _numSprite;
     private static Sprite[] NumSprite;
 
@@ -17,14 +32,36 @@ public class SpriteManger : MonoBehaviour
     [SerializeField] Sprite[] _clearSprite;
     private static Sprite[] ClearSprite;
 
+    [SerializeField] Sprite[] _difficultyPlate_Hex;
+    private static Sprite[] DifficultyPlate_Hex;
+
+    [SerializeField] Sprite[] _difficultyPlate_Box;
+    private static Sprite[] DifficultyPlate_Box;
+
     private void Awake()
     {
+        BackgroundSprites = _backgroundSprites;
         NumSprite = _numSprite;
         NumSpriteSp = _numSpriteSp;
         RankSprite = _rankSprite;
         ClearSprite = _clearSprite;
+        DifficultyPlate_Hex = _difficultyPlate_Hex;
+        DifficultyPlate_Box = _difficultyPlate_Box;
     }
 
+    public static Sprite BackgroundSprite(int index)
+    {
+        if (index < 0 || index > BackgroundSprites.Length) { return null; }
+        else { return BackgroundSprites[index]; }
+    }
+    public static Sprite BackgroundSprite(string name)
+    {
+        int index;
+        index = BG_Name.ToList().FindIndex(item => item == name);
+
+        if (index == -1) { return null; }
+        else { return BackgroundSprites[index]; }
+    }
     public static Sprite GetNumSprite(int Num, bool isSpecial = false)
     {
         return isSpecial ? NumSpriteSp[Num] : NumSprite[Num];
@@ -62,5 +99,9 @@ public class SpriteManger : MonoBehaviour
         if (resultAP == ClearGuage.AM) { return ClearSprite[0]; }
         else if (resultAP == ClearGuage.PM) { return ClearSprite[1]; }
         else { return null; }
+    }
+    public static Sprite GetDiffPlate(int index, bool isHex)
+    {
+        return isHex ? DifficultyPlate_Hex[index] : DifficultyPlate_Box[index];
     }
 }
