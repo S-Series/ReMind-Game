@@ -38,17 +38,21 @@ public class SpriteManger : MonoBehaviour
         int index;
         float accuracy = score / 100000f;
 
-        if (accuracy >= 100.0) { index = 00; }      //$ Rank : Max
-        else if (accuracy >= 99.0) { index = 01; }  //$ Rank : S+
-        else if (accuracy >= 98.0) { index = 02; }  //$ Rank : S
-        else if (accuracy >= 96.5) { index = 03; }  //$ Rank : AA+
-        else if (accuracy >= 95.0) { index = 04; }  //$ Rank : AA
-        else if (accuracy >= 92.5) { index = 05; }  //$ Rank : A+
-        else if (accuracy >= 90.0) { index = 06; }  //$ Rank : A
-        else if (accuracy >= 85.0) { index = 07; }  //$ Rank : B+
-        else if (accuracy >= 80.0) { index = 08; }  //$ Rank : B
-        else if (accuracy >= 75.0) { index = 09; }  //$ Rank : C
-        else if (accuracy != 00.0) { index = 10; }  //$ Rank : D
+        if (accuracy >= 100.0) { index = 00; }      //$ Rank : MAX
+        else if (accuracy >= 99.5) { index = 01; }  //$ Rank : EX+
+        else if (accuracy >= 99.0) { index = 02; }  //$ Rank : EX
+        else if (accuracy >= 98.5) { index = 03; }  //$ Rank : SS+
+        else if (accuracy >= 98.0) { index = 04; }  //$ Rank : SS
+        else if (accuracy >= 97.5) { index = 05; }  //$ Rank : S+
+        else if (accuracy >= 97.0) { index = 06; }  //$ Rank : S
+        else if (accuracy >= 96.0) { index = 07; }  //$ Rank : AA+
+        else if (accuracy >= 95.0) { index = 08; }  //$ Rank : AA
+        else if (accuracy >= 92.5) { index = 09; }  //$ Rank : A+
+        else if (accuracy >= 90.0) { index = 10; }  //$ Rank : A
+        else if (accuracy >= 85.0) { index = 11; }  //$ Rank : B+
+        else if (accuracy >= 80.0) { index = 12; }  //$ Rank : B
+        else if (accuracy >= 75.0) { index = 13; }  //$ Rank : C
+        else if (accuracy != 00.0) { index = 14; }  //$ Rank : D
         else { return null; }                       //# Non Played
 
         return RankSprite[index];
