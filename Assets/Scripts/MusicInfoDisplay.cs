@@ -20,17 +20,6 @@ public class MusicInfoDisplay : MonoBehaviour
 
     public void UpdateMusicInfo(MusicData data)
     {
-        int index, lineIndex, difficulty;
-        index = MusicSelectSystem.s_DiffIndex;
-        lineIndex = (int)MusicSelectSystem.s_LineMode;
-
-        for (int i = 0, j = index; i < 5; i++, j++)
-        {
-            Difficultys[i].ApplyDiff(data.musicGameDatas[lineIndex].diff[i], i);
-            if (i == index)
-            {
-                
-            }
-        }
+        
     }
 }

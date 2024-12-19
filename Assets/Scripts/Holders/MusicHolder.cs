@@ -10,6 +10,7 @@ public class MusicHolder : MonoBehaviour
 
     private MusicData musicData;
     public bool isAvailable = false;
+    private int dataIndex, lineIndex;
 
     [SerializeField] HolderType holderType;
 
@@ -32,11 +33,8 @@ public class MusicHolder : MonoBehaviour
         musicData = data;
         UpdateHolder();
     }
-    public void UpdateHolder()
+    private void UpdateHolder()
     {
-        int dataIndex, lineIndex;
-        dataIndex = MusicSelectSystem.s_DiffIndex;
-        lineIndex = (int)MusicSelectSystem.s_LineMode - 4;
         MusicGameData gameData = musicData.musicGameDatas[lineIndex];
         for (int i = 0; true; i++)
         {

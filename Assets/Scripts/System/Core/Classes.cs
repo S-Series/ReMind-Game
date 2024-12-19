@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Classes
@@ -39,5 +41,15 @@ namespace Classes
     public class EffectNote
     {
 
+    }
+
+    public class SaveData
+    {
+        public int delay, gameMode;
+        public float bpm;
+        public float[] maxBpm = new float[2];
+        public int[] version = new int[3];
+        public string editDate = String.Empty;
+        public List<string> ntoeDatas = new List<string>();
     }
 }

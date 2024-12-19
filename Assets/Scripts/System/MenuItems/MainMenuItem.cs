@@ -5,31 +5,32 @@ using UnityEngine.EventSystems;
 
 public class MainMenuItem : MonoBehaviour
 {
-    public void GameMode()
+    //$ These Actions are Active by Menu Select
+    public void MenuAction_GameMode()
     {
         
     }
-    public void WorldMode()
+    public void MenuAction_WorldMode()
     {
 
     }
-    public void Gallery()
+    public void MenuAction_Gallery()
     {
 
     }
-    public void Network()
+    public void MenuAction_Network()
     {
 
     }
-    public void Account()
+    public void MenuAction_Account()
     {
 
     }
-    public void Shop()
+    public void MenuAction_Shop()
     {
 
     }
-    public void Setting()
+    public void MenuAction_Setting()
     {
         
     }

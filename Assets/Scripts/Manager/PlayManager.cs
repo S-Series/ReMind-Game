@@ -1,18 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Classes;
+using Structs;
 
 public class PlayManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static PlayManager s_this;
+    public static List<NoteData> asdf;
+
+    private void Awake()
     {
-        
+        if (s_this == null) { s_this = this; }
+        else { throw new System.Exception("Multiple PlayManager"); }
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void GetChartData(int musicId, int difId)
     {
-        
+        SaveData saveData;
+        saveData = ChartLoader.Load(musicId, difId);
+
+        //$
     }
 }
+
+
